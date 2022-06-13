@@ -3,7 +3,7 @@ This repository is for 8 SQLChallenge, they are interesting real-world case stud
 
 the 8 Week SQL Challenge case studies can be found below:
 
-Case Study #1 - Danny's Diner
+Case Study #1 - Danny's Diner 
 Case Study #2 - Pizza Runner
 Case Study #3 - Foodie-Fi
 Case Study #4 - Data Bank
