@@ -1,3 +1,12 @@
 Danny's Diner Case Study has the following dataset :
 
-![162094702-20266a74-afb8-483b-ba5a-37a676df2948](https://user-images.githubusercontent.com/103827559/173342801-477f3c0d-e39b-44e2-ac41-a9b4851d0c4d.png)
+
+### /* 1- What is the total amount each customer spent at the restaurant? */ 
+
+SELECT Customer_id, SUM(Price) AS Spent
+FROM `customer-funnel-visualization.Case_Study.Sales` as S
+INNER JOIN `customer-funnel-visualization.Case_Study.Menus` AS M ON S.product_id = M.product_id
+GROUP BY customer_id ; 
+
+
+
