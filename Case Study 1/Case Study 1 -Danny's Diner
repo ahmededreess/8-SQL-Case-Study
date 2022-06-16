@@ -1,7 +1,7 @@
 Danny's Diner Case Study has the following dataset :
 
 
-### /* 1- What is the total amount each customer spent at the restaurant? */ 
+###  What is the total amount each customer spent at the restaurant? */ 
 
 SELECT Customer_id, SUM(Price) AS Spent
 FROM `customer-funnel-visualization.Case_Study.Sales` as S
