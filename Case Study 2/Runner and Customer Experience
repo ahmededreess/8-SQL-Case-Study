@@ -1,0 +1,38 @@
+#### /* 1-How many runners signed up for each 1 week period? */
+
+SELECT EXTRACT(WEEK FROM Datetime_ADD(registration_date,INTERVAL 1 WEEK)) as Week , count(Distinct runner_id) AS Runners_sign_up 
+FROM `customer-funnel-visualization.Case_Study_2.Runners`
+GROUP BY EXTRACT(WEEK FROM Datetime_ADD(registration_date, INTERVAL 1 WEEK))*/
+
+#### /* 2- What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order */
+
+SELECT Runner_id , AVG(DATETIME_DIFF(order_time, pickup_time, minute)) as AVG_Time_Runners_Arrival
+FROM RR AS R 
+INNER JOIN Customer_orders_cleaned AS C using(order_id)   
+GROUP BY Runner_id; 
+
+#### /* 3- Is there any relationship between the number of pizzas and how long the order takes to prepare? */ 
+
+SELECT order_id , count(order_id) as NO_of_pizzas, AVG(DATETIME_DIFF(order_time, pickup_time,minute)) as AVG_Dif_time
+FROM Customer_orders_cleaned as C   
+INNER JOIN RR as R  using(order_id)
+Group BY order_id; 
+
+#### /* 4- What was the average distance travelled for each customer? */ 
+
+SELECT Customer_id , AVG(distance) as AVG_Distance
+FROM RR 
+INNER JOIN cutomer_orders_cleaned using(order_id)
+GROUP BY Cusotmer_id ; 
+
+#### /* 5- What was the difference between the longest and shortest delivery times for all orders? */
+
+SELECT MAx(duration) - MIN(duration) as Difference 
+FROM RR ;
+
+#### /* 6. What was the average speed for each runner for each delivery and do you notice any trend for these values? */ 
+
+SELECT runner_id , ROUND((distance / duration) * 60,2) as AVG_speeed
+FROM RR
+WHERE cancellation is null 
+ORDER BY runner_id ;
