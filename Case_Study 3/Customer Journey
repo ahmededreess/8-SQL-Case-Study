@@ -2,3 +2,22 @@
 
 #### Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey
      Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier!
+     
+     
+  SELECT customer_id , plan_id ,plan_name, start_date ,
+         DATE_DIFF(Lead(start_date) over(partition by customer_id order by start_date),start_date, DAY) as Difference
+  FROM `customer-funnel-visualization.Case_Study_3.Plans` as P 
+  INNER JOIN `customer-funnel-visualization.Case_Study_3.Subscriptions` as S  using(plan_id)
+  order by customer_id ;
+  
+  
+  the result as the foloowing :
+  
+  all Cutsomers joined a trial then after 7 days the customers acted as the following : 
+         - customer 1 subscribed basic monthly 
+         - customer 2 subscribed pro annual 
+         - customer 3 subscribed basic monthly 
+         - customer 4 subscribed basic monthly then after 88 days churned 
+         - customer 5 subscribed basic monthly. 
+         
+         And So on 
